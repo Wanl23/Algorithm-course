@@ -3,14 +3,15 @@ package lesson6;
 public class Main {
     public static void main(String[] args) {
         MyTreeMap<Character, Integer> tree = new MyTreeMap<>();
-        tree.put('S', 0);
-        tree.put('E', 0);
-        tree.put('A', 0);
-        tree.put('R', 0);
-        tree.put('C', 0);
-        tree.put('H', 0);
-        tree.put('X', 0);
-        tree.put('M', 0);
-        tree.remove('E');
+        boolean flag = false;
+        while (!flag) {
+            for (int i = 0; i < 22; i++) {
+                Character key = (char) (i + 65);
+                Integer value = (-100 + (int) (Math.random() * (100 - (-100))));
+                tree.put(key, value);
+            }
+            flag = tree.isBalanced();
+            System.out.println(tree.isBalanced());
+        }
     }
 }

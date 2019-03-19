@@ -8,16 +8,35 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
         Value value;
         Node left;
         Node right;
+        int height;
         int size;
 
         public Node(Key key, Value value, int size) {
             this.key = key;
             this.value = value;
             this.size = size;
+            this.height = 0;
         }
     }
 
     private Node root = null;
+
+    public boolean isBalanced() {
+        if (isBalanced(root)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isBalanced(Node node) {
+        if ((root.left != null && root.right != null)
+                && (root.left.height == root.right.height + 1
+                || root.left.height == root.right.height - 1
+                || root.left.height == root.right.height)) {
+            return true;
+        } else return false;
+    }
 
     public boolean isEmpty() {
         return root == null;
@@ -83,6 +102,7 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
         }
 
         node.size = size(node.left) + size(node.right) + 1;
+        node.height++;
         return node;
     }
 
@@ -172,6 +192,7 @@ public class MyTreeMap<Key extends Comparable<Key>, Value> {
             tmp = null;
         }
         node.size = size(node.left) + size(node.right) + 1;
+        node.height--;
         return node;
     }
 }
